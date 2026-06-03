@@ -1,0 +1,21 @@
+# Secrets
+.env
+
+# Temp working files (keep the folder structure, ignore contents)
+/temp/outputs/*
+/temp/resources/*
+!**/outputs/.gitkeep
+!**/resources/.gitkeep
+
+# Node
+node_modules/
+dist/
+.cache/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/settings.json
+.idea/

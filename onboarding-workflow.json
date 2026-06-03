@@ -1,0 +1,333 @@
+{
+  "name": "AI Employee Onboarding Automation",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Kymap LLC — New Employee Onboarding",
+        "formDescription": "Welcome to Kymap LLC! Please complete all required fields. Your onboarding will begin automatically within 60 seconds of submission.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Full Name",
+              "fieldType": "text",
+              "requiredField": true,
+              "placeholder": "e.g. Jane Smith"
+            },
+            {
+              "fieldLabel": "Personal Email",
+              "fieldType": "email",
+              "requiredField": true,
+              "placeholder": "jane@example.com"
+            },
+            {
+              "fieldLabel": "Job Title",
+              "fieldType": "text",
+              "requiredField": true,
+              "placeholder": "e.g. Marketing Coordinator"
+            },
+            {
+              "fieldLabel": "Department",
+              "fieldType": "dropdown",
+              "requiredField": true,
+              "fieldOptions": {
+                "values": [
+                  { "option": "Sales" },
+                  { "option": "Marketing" },
+                  { "option": "Operations" },
+                  { "option": "Engineering" },
+                  { "option": "Finance" },
+                  { "option": "HR" },
+                  { "option": "Other" }
+                ]
+              }
+            },
+            {
+              "fieldLabel": "Start Date",
+              "fieldType": "date",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Manager Name",
+              "fieldType": "text",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Manager Email",
+              "fieldType": "email",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Employment Type",
+              "fieldType": "dropdown",
+              "requiredField": true,
+              "fieldOptions": {
+                "values": [
+                  { "option": "Full-time" },
+                  { "option": "Part-time" },
+                  { "option": "Contract" }
+                ]
+              }
+            },
+            {
+              "fieldLabel": "Work Location",
+              "fieldType": "dropdown",
+              "requiredField": true,
+              "fieldOptions": {
+                "values": [
+                  { "option": "Remote" },
+                  { "option": "On-site" },
+                  { "option": "Hybrid" }
+                ]
+              }
+            },
+            {
+              "fieldLabel": "Equipment Needed",
+              "fieldType": "multiSelect",
+              "fieldOptions": {
+                "values": [
+                  { "option": "Laptop" },
+                  { "option": "Monitor" },
+                  { "option": "Phone" },
+                  { "option": "Desk" },
+                  { "option": "Access Badge" }
+                ]
+              }
+            }
+          ]
+        },
+        "responseMode": "onReceived",
+        "options": {}
+      },
+      "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+      "name": "On New Hire Form Submission",
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [0, 300],
+      "webhookId": "12345678-abcd-ef01-2345-678901234567"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('On New Hire Form Submission').item.json['Personal Email'] }}",
+        "subject": "=Welcome to Kymap LLC, {{ $('On New Hire Form Submission').item.json['Full Name'].split(' ')[0] }}! 🎉",
+        "message": "=<!DOCTYPE html><html lang='en'><head><meta charset='UTF-8'></head><body style='margin:0;padding:0;background-color:#f8fafc;font-family:Arial,Helvetica,sans-serif;'><table width='100%' cellpadding='0' cellspacing='0' style='padding:32px 20px;background-color:#f8fafc;'><tr><td align='center'><table width='600' cellpadding='0' cellspacing='0' style='max-width:600px;width:100%;background:#ffffff;border-radius:12px;overflow:hidden;'><tr><td style='background-color:#0f172a;padding:28px 36px;'><p style='margin:0;color:#ffffff;font-size:20px;font-weight:700;'>Kymap LLC</p><p style='margin:4px 0 0;color:#94a3b8;font-size:12px;'>AI Automation</p></td></tr><tr><td style='padding:36px;'><h1 style='margin:0 0 12px;font-size:26px;font-weight:700;color:#0f172a;'>Welcome to the team, {{ $('On New Hire Form Submission').item.json['Full Name'].split(' ')[0] }}!</h1><p style='margin:0 0 28px;color:#475569;font-size:15px;line-height:1.7;'>We are incredibly excited to have you joining us. Here is everything you need to know before your first day.</p><table width='100%' cellpadding='0' cellspacing='0' style='margin-bottom:28px;'><tr><td style='padding:12px 0;border-bottom:1px solid #f1f5f9;'><p style='margin:0;font-size:11px;color:#94a3b8;font-weight:700;text-transform:uppercase;letter-spacing:1px;'>Role</p><p style='margin:6px 0 0;font-size:15px;color:#1e293b;font-weight:500;'>{{ $('On New Hire Form Submission').item.json['Job Title'] }}</p></td></tr><tr><td style='padding:12px 0;border-bottom:1px solid #f1f5f9;'><p style='margin:0;font-size:11px;color:#94a3b8;font-weight:700;text-transform:uppercase;letter-spacing:1px;'>Department</p><p style='margin:6px 0 0;font-size:15px;color:#1e293b;font-weight:500;'>{{ $('On New Hire Form Submission').item.json['Department'] }}</p></td></tr><tr><td style='padding:12px 0;border-bottom:1px solid #f1f5f9;'><p style='margin:0;font-size:11px;color:#94a3b8;font-weight:700;text-transform:uppercase;letter-spacing:1px;'>Start Date</p><p style='margin:6px 0 0;font-size:15px;color:#1e293b;font-weight:500;'>{{ $('On New Hire Form Submission').item.json['Start Date'] }}</p></td></tr><tr><td style='padding:12px 0;border-bottom:1px solid #f1f5f9;'><p style='margin:0;font-size:11px;color:#94a3b8;font-weight:700;text-transform:uppercase;letter-spacing:1px;'>Your Manager</p><p style='margin:6px 0 0;font-size:15px;color:#1e293b;font-weight:500;'>{{ $('On New Hire Form Submission').item.json['Manager Name'] }}</p></td></tr><tr><td style='padding:12px 0;'><p style='margin:0;font-size:11px;color:#94a3b8;font-weight:700;text-transform:uppercase;letter-spacing:1px;'>Work Location</p><p style='margin:6px 0 0;font-size:15px;color:#1e293b;font-weight:500;'>{{ $('On New Hire Form Submission').item.json['Work Location'] }}</p></td></tr></table><div style='background-color:#f8fafc;border-radius:8px;padding:20px 24px;margin-bottom:24px;'><p style='margin:0 0 10px;font-size:12px;font-weight:700;color:#374151;text-transform:uppercase;letter-spacing:1px;'>Equipment Being Prepared</p><p style='margin:0;font-size:14px;color:#475569;'>{{ [].concat($('On New Hire Form Submission').item.json['Equipment Needed']).filter(Boolean).join(', ') || 'To be confirmed' }}</p></div><div style='border-left:4px solid #6366f1;background-color:#ede9fe;padding:16px 20px;margin-bottom:28px;border-radius:0 8px 8px 0;'><p style='margin:0;font-size:14px;color:#4c1d95;line-height:1.6;'><strong>Coming up next:</strong> Keep an eye on your inbox — your personalized 30-day onboarding plan will arrive shortly to set you up for success from day one.</p></div><p style='margin:0 0 6px;font-size:15px;color:#475569;line-height:1.6;'>If you have any questions before your start date, reach out to {{ $('On New Hire Form Submission').item.json['Manager Name'] }} directly.</p><p style='margin:28px 0 0;font-size:15px;font-weight:600;color:#1e293b;'>We cannot wait to see what you will build with us.<br><span style='font-weight:400;color:#64748b;'>The Kymap LLC Team</span></p></td></tr><tr><td style='background-color:#f8fafc;padding:20px 36px;border-top:1px solid #e2e8f0;'><p style='margin:0;font-size:12px;color:#94a3b8;'>Kymap LLC &middot; AI Automation Company</p></td></tr></table></td></tr></table></body></html>",
+        "options": {
+          "emailType": "html"
+        }
+      },
+      "id": "b1c2d3e4-f5a6-7890-bcde-f01234567891",
+      "name": "Step 1: Welcome Email",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [400, 0],
+      "continueOnFail": true,
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "CONFIGURE_ME",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('On New Hire Form Submission').item.json['Manager Email'] }}",
+        "subject": "={{ $('On New Hire Form Submission').item.json['Full Name'] }} has completed onboarding — starting {{ $('On New Hire Form Submission').item.json['Start Date'] }}",
+        "message": "=<!DOCTYPE html><html lang='en'><head><meta charset='UTF-8'></head><body style='margin:0;padding:0;background-color:#f8fafc;font-family:Arial,Helvetica,sans-serif;'><table width='100%' cellpadding='0' cellspacing='0' style='padding:32px 20px;background-color:#f8fafc;'><tr><td align='center'><table width='600' cellpadding='0' cellspacing='0' style='max-width:600px;width:100%;background:#ffffff;border-radius:12px;overflow:hidden;'><tr><td style='background-color:#0f172a;padding:28px 36px;'><p style='margin:0;color:#ffffff;font-size:20px;font-weight:700;'>Kymap LLC</p><p style='margin:4px 0 0;color:#94a3b8;font-size:12px;'>AI Automation</p></td></tr><tr><td style='padding:36px;'><h1 style='margin:0 0 12px;font-size:24px;font-weight:700;color:#0f172a;'>{{ $('On New Hire Form Submission').item.json['Full Name'] }} has completed onboarding</h1><p style='margin:0 0 28px;color:#475569;font-size:15px;line-height:1.7;'>Hi {{ $('On New Hire Form Submission').item.json['Manager Name'] }}, your new team member has submitted their onboarding form. Here is a full summary.</p><table width='100%' cellpadding='0' cellspacing='0' style='margin-bottom:28px;'><tr><td style='padding:12px 0;border-bottom:1px solid #f1f5f9;'><p style='margin:0;font-size:11px;color:#94a3b8;font-weight:700;text-transform:uppercase;letter-spacing:1px;'>Full Name</p><p style='margin:6px 0 0;font-size:15px;color:#1e293b;font-weight:500;'>{{ $('On New Hire Form Submission').item.json['Full Name'] }}</p></td></tr><tr><td style='padding:12px 0;border-bottom:1px solid #f1f5f9;'><p style='margin:0;font-size:11px;color:#94a3b8;font-weight:700;text-transform:uppercase;letter-spacing:1px;'>Job Title</p><p style='margin:6px 0 0;font-size:15px;color:#1e293b;font-weight:500;'>{{ $('On New Hire Form Submission').item.json['Job Title'] }}</p></td></tr><tr><td style='padding:12px 0;border-bottom:1px solid #f1f5f9;'><p style='margin:0;font-size:11px;color:#94a3b8;font-weight:700;text-transform:uppercase;letter-spacing:1px;'>Department</p><p style='margin:6px 0 0;font-size:15px;color:#1e293b;font-weight:500;'>{{ $('On New Hire Form Submission').item.json['Department'] }}</p></td></tr><tr><td style='padding:12px 0;border-bottom:1px solid #f1f5f9;'><p style='margin:0;font-size:11px;color:#94a3b8;font-weight:700;text-transform:uppercase;letter-spacing:1px;'>Start Date</p><p style='margin:6px 0 0;font-size:15px;color:#1e293b;font-weight:500;'>{{ $('On New Hire Form Submission').item.json['Start Date'] }}</p></td></tr><tr><td style='padding:12px 0;border-bottom:1px solid #f1f5f9;'><p style='margin:0;font-size:11px;color:#94a3b8;font-weight:700;text-transform:uppercase;letter-spacing:1px;'>Employment Type</p><p style='margin:6px 0 0;font-size:15px;color:#1e293b;font-weight:500;'>{{ $('On New Hire Form Submission').item.json['Employment Type'] }}</p></td></tr><tr><td style='padding:12px 0;border-bottom:1px solid #f1f5f9;'><p style='margin:0;font-size:11px;color:#94a3b8;font-weight:700;text-transform:uppercase;letter-spacing:1px;'>Work Location</p><p style='margin:6px 0 0;font-size:15px;color:#1e293b;font-weight:500;'>{{ $('On New Hire Form Submission').item.json['Work Location'] }}</p></td></tr><tr><td style='padding:12px 0;'><p style='margin:0;font-size:11px;color:#94a3b8;font-weight:700;text-transform:uppercase;letter-spacing:1px;'>Equipment Requested</p><p style='margin:6px 0 0;font-size:15px;color:#1e293b;font-weight:500;'>{{ [].concat($('On New Hire Form Submission').item.json['Equipment Needed']).filter(Boolean).join(', ') || 'None specified' }}</p></td></tr></table><div style='background-color:#f0fdf4;border-left:4px solid #22c55e;padding:16px 20px;margin-bottom:28px;border-radius:0 8px 8px 0;'><p style='margin:0;font-size:14px;color:#166534;line-height:1.6;'>✓ A welcome email has been sent to {{ $('On New Hire Form Submission').item.json['Full Name'].split(' ')[0] }} at their personal address.<br>✓ A personalized 30-day onboarding plan will follow shortly.</p></div><p style='margin:0;font-size:14px;color:#64748b;line-height:1.6;'>No action is required from you at this time. This notification is for your records.</p><p style='margin:28px 0 0;font-size:15px;font-weight:600;color:#1e293b;'>The Kymap LLC Team</p></td></tr><tr><td style='background-color:#f8fafc;padding:20px 36px;border-top:1px solid #e2e8f0;'><p style='margin:0;font-size:12px;color:#94a3b8;'>Kymap LLC &middot; AI Automation Company</p></td></tr></table></td></tr></table></body></html>",
+        "options": {
+          "emailType": "html"
+        }
+      },
+      "id": "c1d2e3f4-a5b6-7890-cdef-012345678902",
+      "name": "Step 2: Manager Notification",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [400, 300],
+      "continueOnFail": true,
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "CONFIGURE_ME",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.anthropic.com/v1/messages",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "x-api-key",
+              "value": "={{ $env.ANTHROPIC_API_KEY }}"
+            },
+            {
+              "name": "anthropic-version",
+              "value": "2023-06-01"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "={{ JSON.stringify({ model: 'claude-sonnet-4-6', max_tokens: 2000, system: 'You are an expert HR consultant and onboarding specialist at Kymap LLC, an AI automation company. Generate a detailed, personalized 30-day onboarding plan. Be specific, practical, and encouraging. Use the role and department to tailor every recommendation.', messages: [{ role: 'user', content: 'Generate a personalized 30-day onboarding plan for:\\n- Name: ' + $('On New Hire Form Submission').item.json['Full Name'] + '\\n- Job Title: ' + $('On New Hire Form Submission').item.json['Job Title'] + '\\n- Department: ' + $('On New Hire Form Submission').item.json['Department'] + '\\n- Work Location: ' + $('On New Hire Form Submission').item.json['Work Location'] + '\\n- Employment Type: ' + $('On New Hire Form Submission').item.json['Employment Type'] + '\\n- Start Date: ' + $('On New Hire Form Submission').item.json['Start Date'] + '\\n- Manager: ' + $('On New Hire Form Submission').item.json['Manager Name'] + '\\n\\nStructure the plan in three phases:\\n\\nWEEK 1 (Days 1-7): Orientation & Setup\\nProvide 5 specific daily tasks focused on: getting set up technically, meeting the team, understanding company culture, learning core tools, and exploring the company mission.\\n\\nWEEK 2 (Days 8-14): Learning & Integration\\nProvide 5 specific tasks focused on: role-specific training, shadowing colleagues, understanding key processes, making first small contributions, and identifying quick wins.\\n\\nWEEK 3-4 (Days 15-30): Contribution & Growth\\nProvide 5 specific tasks focused on: taking ownership of a project, delivering first independent work, building cross-team relationships, and setting 90-day goals.\\n\\nAlso include:\\n- 3 specific, measurable success metrics for the first 30 days\\n- 2-3 recommended resources tailored to the ' + $('On New Hire Form Submission').item.json['Department'] + ' department\\n- A note about scheduling their first check-in meeting with ' + $('On New Hire Form Submission').item.json['Manager Name'] + '\\n\\nReturn the plan as clean, well-formatted plain text. No JSON. No markdown code blocks. Use clear headings and bullet points.' }] }) }}"
+      },
+      "id": "d1e2f3a4-b5c6-7890-def0-123456789013",
+      "name": "Step 3: Generate 30-Day Plan (Claude)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [400, 600],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1y2yofiiTOGhXhb47Hft4SuxaeA6N9_8RCjQ_jAQc50E",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "AI EMPLOYEE ONBOARDING",
+          "mode": "name"
+        },
+        "dataMode": "defineBelow",
+        "fieldsUi": {
+          "fieldValues": [
+            {
+              "fieldId": "Timestamp",
+              "fieldValue": "={{ new Date().toISOString() }}"
+            },
+            {
+              "fieldId": "Full Name",
+              "fieldValue": "={{ $('On New Hire Form Submission').item.json['Full Name'] }}"
+            },
+            {
+              "fieldId": "Personal Email",
+              "fieldValue": "={{ $('On New Hire Form Submission').item.json['Personal Email'] }}"
+            },
+            {
+              "fieldId": "Job Title",
+              "fieldValue": "={{ $('On New Hire Form Submission').item.json['Job Title'] }}"
+            },
+            {
+              "fieldId": "Department",
+              "fieldValue": "={{ $('On New Hire Form Submission').item.json['Department'] }}"
+            },
+            {
+              "fieldId": "Start Date",
+              "fieldValue": "={{ $('On New Hire Form Submission').item.json['Start Date'] }}"
+            },
+            {
+              "fieldId": "Manager Name",
+              "fieldValue": "={{ $('On New Hire Form Submission').item.json['Manager Name'] }}"
+            },
+            {
+              "fieldId": "Manager Email",
+              "fieldValue": "={{ $('On New Hire Form Submission').item.json['Manager Email'] }}"
+            },
+            {
+              "fieldId": "Employment Type",
+              "fieldValue": "={{ $('On New Hire Form Submission').item.json['Employment Type'] }}"
+            },
+            {
+              "fieldId": "Work Location",
+              "fieldValue": "={{ $('On New Hire Form Submission').item.json['Work Location'] }}"
+            },
+            {
+              "fieldId": "Equipment Needed",
+              "fieldValue": "={{ [].concat($('On New Hire Form Submission').item.json['Equipment Needed']).filter(Boolean).join(', ') }}"
+            },
+            {
+              "fieldId": "Onboarding Status",
+              "fieldValue": "Completed"
+            },
+            {
+              "fieldId": "30-Day Plan",
+              "fieldValue": "={{ $('Step 3: Generate 30-Day Plan (Claude)').first().json?.content?.[0]?.text || 'Generation failed — manual review required' }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "e1f2a3b4-c5d6-7890-ef01-234567890124",
+      "name": "Step 4: Log to Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [800, 600],
+      "continueOnFail": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "CONFIGURE_ME",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('On New Hire Form Submission').item.json['Personal Email'] }}",
+        "subject": "=Your personalized 30-day plan at Kymap LLC, {{ $('On New Hire Form Submission').item.json['Full Name'].split(' ')[0] }}",
+        "message": "=<!DOCTYPE html><html lang='en'><head><meta charset='UTF-8'></head><body style='margin:0;padding:0;background-color:#f8fafc;font-family:Arial,Helvetica,sans-serif;'><table width='100%' cellpadding='0' cellspacing='0' style='padding:32px 20px;background-color:#f8fafc;'><tr><td align='center'><table width='600' cellpadding='0' cellspacing='0' style='max-width:600px;width:100%;background:#ffffff;border-radius:12px;overflow:hidden;'><tr><td style='background-color:#0f172a;padding:28px 36px;'><p style='margin:0;color:#ffffff;font-size:20px;font-weight:700;'>Kymap LLC</p><p style='margin:4px 0 0;color:#94a3b8;font-size:12px;'>AI Automation</p></td></tr><tr><td style='padding:36px;'><h1 style='margin:0 0 12px;font-size:24px;font-weight:700;color:#0f172a;'>Your 30-day plan is ready, {{ $('On New Hire Form Submission').item.json['Full Name'].split(' ')[0] }}!</h1><p style='margin:0 0 28px;color:#475569;font-size:15px;line-height:1.7;'>We have put together a personalized onboarding plan to set you up for success in your first 30 days as <strong>{{ $('On New Hire Form Submission').item.json['Job Title'] }}</strong> in <strong>{{ $('On New Hire Form Submission').item.json['Department'] }}</strong>. Use this as your roadmap.</p><div style='background-color:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:28px;margin-bottom:28px;'><pre style='margin:0;font-family:Arial,Helvetica,sans-serif;font-size:14px;color:#334155;line-height:1.9;white-space:pre-wrap;word-wrap:break-word;'>{{ $('Step 3: Generate 30-Day Plan (Claude)').first().json?.content?.[0]?.text || 'Your 30-day plan could not be generated automatically. Your manager will be in touch shortly with a personalized plan.' }}</pre></div><div style='background-color:#ede9fe;border-radius:8px;padding:20px 24px;margin-bottom:28px;'><p style='margin:0;font-size:14px;color:#4c1d95;line-height:1.6;'><strong>Pro tip:</strong> Save this email for reference. In your first week, focus on the orientation tasks and everything else will follow naturally.</p></div><p style='margin:0;font-size:15px;color:#475569;line-height:1.7;'>We are rooting for you. Welcome to Kymap LLC — let us build something great together.</p><p style='margin:28px 0 0;font-size:15px;font-weight:600;color:#1e293b;'>The Kymap LLC Team</p></td></tr><tr><td style='background-color:#f8fafc;padding:20px 36px;border-top:1px solid #e2e8f0;'><p style='margin:0;font-size:12px;color:#94a3b8;'>Kymap LLC &middot; AI Automation Company</p></td></tr></table></td></tr></table></body></html>",
+        "options": {
+          "emailType": "html"
+        }
+      },
+      "id": "f1a2b3c4-d5e6-7890-f012-345678901235",
+      "name": "Step 5: Follow-up Email with Plan",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [1200, 600],
+      "continueOnFail": true,
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "CONFIGURE_ME",
+          "name": "Gmail account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "On New Hire Form Submission": {
+      "main": [
+        [
+          { "node": "Step 1: Welcome Email", "type": "main", "index": 0 },
+          { "node": "Step 2: Manager Notification", "type": "main", "index": 0 },
+          { "node": "Step 3: Generate 30-Day Plan (Claude)", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "Step 3: Generate 30-Day Plan (Claude)": {
+      "main": [
+        [
+          { "node": "Step 4: Log to Google Sheets", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "Step 4: Log to Google Sheets": {
+      "main": [
+        [
+          { "node": "Step 5: Follow-up Email with Plan", "type": "main", "index": 0 }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "1.0.0",
+  "meta": {
+    "instanceId": "",
+    "templateCredsSetupCompleted": false
+  },
+  "id": "kymap-onboarding-workflow-v1",
+  "tags": [
+    { "name": "onboarding" },
+    { "name": "hr-automation" }
+  ]
+}
